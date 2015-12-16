@@ -17,6 +17,7 @@ find_package(catkin REQUIRED
     moveit_ros_planning_interface
 )
 
+find_package(cmake_modules REQUIRED)
 find_package(Boost REQUIRED)
 find_package(Eigen 3 REQUIRED)
 
