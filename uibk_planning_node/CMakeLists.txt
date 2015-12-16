@@ -19,19 +19,17 @@ find_package(catkin REQUIRED
 
 find_package(cmake_modules REQUIRED)
 find_package(Boost REQUIRED)
-find_package(Eigen 3 REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
-  DEPENDS ${Boost_LIBRARIES} ${Eigen_Libraries}
+  DEPENDS ${Boost_LIBRARIES}
 )
 
 include_directories(
    include
    ${catkin_INCLUDE_DIRS}
    ${Boost_INCLUDE_DIRS}
-   ${EIGEN_INCLUDE_DIR}
 )
 
 AUX_SOURCE_DIRECTORY(src/ UIBKPLANNINGSRC)
@@ -40,19 +38,19 @@ add_library(${PROJECT_NAME}
     ${UIBKPLANNINGSRC}
 )
 
-target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${EIGEN_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 add_executable(move_goal src/move_goal.cpp)
-target_link_libraries(move_goal ${catkin_LIBRARIES} ${EIGEN_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(move_goal ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 add_executable(kinematics_helper_tests tests/kinematics_helper_tests.cpp)
 add_dependencies(kinematics_helper_tests ${PROJECT_NAME})
-target_link_libraries(kinematics_helper_tests ${PROJECT_NAME} ${catkin_LIBRARIES} ${EIGEN_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(kinematics_helper_tests ${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 add_executable(test_trajectory_planner tests/test_trajectory_planner.cpp)
 add_dependencies(test_trajectory_planner ${PROJECT_NAME})
-target_link_libraries(test_trajectory_planner ${PROJECT_NAME} ${catkin_LIBRARIES} ${EIGEN_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(test_trajectory_planner ${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
 add_executable(test_ccontrol tests/test_ccontrol.cpp)
 add_dependencies(test_ccontrol ${PROJECT_NAME})
-target_link_libraries(test_ccontrol ${PROJECT_NAME} ${catkin_LIBRARIES} ${EIGEN_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(test_ccontrol ${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
