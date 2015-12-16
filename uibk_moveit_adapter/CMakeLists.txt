@@ -6,8 +6,8 @@ project(uibk_moveit_adapter)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
     roscpp
-    controller_manager
     actionlib
+    controller_manager
 )
 
 find_package(Eigen 3 REQUIRED)
