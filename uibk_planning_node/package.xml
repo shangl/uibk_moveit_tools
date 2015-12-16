@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<package>
+  <name>uibk_planning_node</name>
+  <version>0.0.0</version>
+  <description>The uibk_planning_node package</description>
+
+  <maintainer email="martin@todo.todo">martin</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+	<build_depend>roscpp</build_depend>
+	<build_depend>moveit_msgs</build_depend>
+	<build_depend>moveit_core</build_depend>
+	<build_depend>moveit_ros_planning_interface</build_depend>
+	<build_depend>actionlib</build_depend>
+	<build_depend>eigen3</build_depend>
+        <build_depend>uibk_moveit_adapter</build_depend>
+        <build_depend>uibk_robot_moveit_config</build_depend>
+        <build_depend>geometry_msgs</build_depend>
+	
+	<run_depend>roscpp</run_depend>
+	<run_depend>moveit_msgs</run_depend>
+	<run_depend>moveit_core</run_depend>
+	<run_depend>moveit_ros_planning_interface</run_depend>
+	<run_depend>actionlib</run_depend>
+	<run_depend>eigen3</run_depend>
+        <run_depend>uibk_moveit_adapter</run_depend>
+        <run_depend>uibk_robot_moveit_config</run_depend>
+        <run_depend>geometry_msgs</run_depend>
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- You can specify that this package is a metapackage here: -->
+    <!-- <metapackage/> -->
+
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>
