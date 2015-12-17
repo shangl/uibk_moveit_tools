@@ -11,7 +11,6 @@
 
 #define CAN_LOOK false
 #define ALLOW_REPLAN false
-#define FRAME_ID "world_link"
 #define UIBK_STD_GROUP_NAME "plan_kinematic_path"
 
 namespace trajectory_planner_moveit {
@@ -58,8 +57,9 @@ public:
 
     const std::string getName();
 
-    virtual bool plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution);
-    virtual bool plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state);
+    virtual bool plan(std::vector<double> &jointPos, moveit_msgs::MotionPlanResponse &solution);
+    virtual bool plan(const geometry_msgs::PoseStamped &goal, moveit_msgs::MotionPlanResponse &solution);
+    virtual bool plan(const geometry_msgs::PoseStamped &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state);
 
     virtual bool executePlan(moveit_msgs::RobotTrajectory& trajectory);
     virtual bool executePlan(moveit_msgs::MotionPlanResponse& trajectory);
