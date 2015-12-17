@@ -11,7 +11,7 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    ros::init(argc, argv, "test_ccontrol"); ros::NodeHandle* node = new ros::NodeHandle(); usleep(1e6);
+    ros::init(argc, argv, "test_ccontrol"); ros::NodeHandle* node = new ros::NodeHandle("simulation"); usleep(1e6);
 
     vector<string> jointNames;
     getArmJointNames("right", jointNames);
