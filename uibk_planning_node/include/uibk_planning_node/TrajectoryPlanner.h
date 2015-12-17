@@ -5,6 +5,7 @@
 
 #include <geometry_msgs/Pose.h>
 #include <moveit_msgs/GetMotionPlan.h>
+#include <moveit/move_group_interface/move_group.h>
 
 #include "../../src/PlannerBase.h"
 #include "../../src/KinematicsHelper.h"
@@ -33,13 +34,15 @@ private:
 
     KinematicsHelper kin_helper_;
 
+    moveit::planning_interface::MoveGroup _group;
+
 	ros::ServiceClient planning_client_;
 
     ros::NodeHandle nh;
 
 public:
 
-    TrajectoryPlanner(ros::NodeHandle &nh, std::string groupName, const std::vector<std::string> jointNames, std::string kinematicPathTopic = UIBK_STD_GROUP_NAME);
+    TrajectoryPlanner(ros::NodeHandle &nh, moveit::planning_interface::MoveGroup &group, const std::vector<std::string> jointNames, std::string kinematicPathTopic = UIBK_STD_GROUP_NAME);
 
 	~TrajectoryPlanner();
 

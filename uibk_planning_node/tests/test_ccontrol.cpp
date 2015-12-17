@@ -17,7 +17,8 @@ int main(int argc, char *argv[]) {
     getArmJointNames("right", jointNames);
 
     boost::shared_ptr<trajectory_planner_moveit::TrajectoryPlanner> plannerPtr;
-    plannerPtr = boost::shared_ptr<trajectory_planner_moveit::TrajectoryPlanner>(new trajectory_planner_moveit::TrajectoryPlanner(*node, "right_arm", jointNames));
+    moveit::planning_interface::MoveGroup group("right_arm");
+    plannerPtr = boost::shared_ptr<trajectory_planner_moveit::TrajectoryPlanner>(new trajectory_planner_moveit::TrajectoryPlanner(*node, group, jointNames));
     plannerPtr->setPlannerId("LBKPIECEkConfigDefault");
 
     geometry_msgs::PoseStamped stampedGoal;

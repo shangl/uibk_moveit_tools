@@ -3,6 +3,7 @@
 #include <moveit_msgs/MotionPlanResponse.h>
 #include <moveit/kinematic_constraints/utils.h>
 #include <moveit_msgs/ExecuteKnownTrajectory.h>
+#include <moveit/move_group_interface/move_group.h>
 #include <moveit_msgs/ExecuteKnownTrajectoryRequest.h>
 
 #include <uibk_planning_node/TrajectoryPlanner.h>
@@ -11,7 +12,7 @@ using namespace std;
 
 namespace trajectory_planner_moveit {
 
-TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh, std::string groupName, const std::vector<string> jointNames, std::string kinematicPathTopic) : kin_helper_(nh) {
+TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh, moveit::planning_interface::MoveGroup& group, const std::vector<string> jointNames, std::string kinematicPathTopic) : kin_helper_(nh), _group(group) {
 
     this->nh = nh;
     ROS_INFO("Connecting to planning service...");
@@ -19,7 +20,7 @@ TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh, std::string groupName,
     string topic = kinematicPathTopic;
     planning_client_ = nh.serviceClient<moveit_msgs::GetMotionPlan>(topic);
 
-    this->groupName = groupName;
+    this->groupName = group.getName();
     this->jointNames = jointNames;
 
     // set some default values
@@ -47,7 +48,7 @@ bool TrajectoryPlanner::executePlan(moveit_msgs::RobotTrajectory& trajectory, ro
     if (success) {
         moveit_msgs::MoveItErrorCodes &code = msg.response.error_code;
         if (code.val == moveit_msgs::MoveItErrorCodes::SUCCESS) {
-            ROS_INFO("Execution finished successfully.");
+        //    ROS_INFO("Execution finished successfully.");
         } else {
             ROS_ERROR("Execution finished with error_code '%d'", code.val);
             return false;
@@ -113,6 +114,7 @@ const string TrajectoryPlanner::getName() {
 bool TrajectoryPlanner::plan(std::vector<double> &jointPos, moveit_msgs::MotionPlanResponse &solution) {
 
     sensor_msgs::JointState start_state;
+    start_state.position = _group.getCurrentJointValues();
     if (!planning_client_.exists()) {
         ROS_ERROR_STREAM("Unable to connect to planning service - ensure that MoveIt is launched!");
 

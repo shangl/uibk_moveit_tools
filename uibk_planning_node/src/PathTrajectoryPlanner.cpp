@@ -7,7 +7,7 @@ using namespace std;
 
 namespace trajectory_planner_moveit {
 
-PathTrajectoryPlanner::PathTrajectoryPlanner(ros::NodeHandle &nh, string groupName, std::vector<std::string> jointNames, string finalLinkName, std::string kinematicPathTopic) : trajectory_planner_(nh, groupName, jointNames, kinematicPathTopic) {
+PathTrajectoryPlanner::PathTrajectoryPlanner(ros::NodeHandle &nh, moveit::planning_interface::MoveGroup& group, std::vector<std::string> jointNames, string finalLinkName, std::string kinematicPathTopic) : trajectory_planner_(nh, group, jointNames, kinematicPathTopic) {
 
     ROS_INFO("Connecting to planning service...");
 

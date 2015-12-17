@@ -18,7 +18,8 @@ int main(int argc, char *argv[]) {
 
     vector<string> jointNames;
     getArmJointNames("right", jointNames);
-    trajectory_planner_moveit::TrajectoryPlanner planner(nh, "right_arm", jointNames);
+    moveit::planning_interface::MoveGroup group("right_arm");
+    trajectory_planner_moveit::TrajectoryPlanner planner(nh, group, jointNames);
 
     trajectory_planner_moveit::KinematicsHelper ki_helper(nh);
     moveit_msgs::MotionPlanResponse plan;

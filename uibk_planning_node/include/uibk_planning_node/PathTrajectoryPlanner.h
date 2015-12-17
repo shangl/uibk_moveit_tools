@@ -29,7 +29,7 @@ private:
 
 public:
 
-    PathTrajectoryPlanner(ros::NodeHandle &nh, std::string groupName, std::vector<std::string> jointNames, std::string finalLinkName, std::string kinematicPathTopic = UIBK_STD_GROUP_NAME);
+    PathTrajectoryPlanner(ros::NodeHandle &nh, moveit::planning_interface::MoveGroup& group, std::vector<std::string> jointNames, std::string finalLinkName, std::string kinematicPathTopic = UIBK_STD_GROUP_NAME);
     ~PathTrajectoryPlanner() {}
 
     void setJumpThreshold(double value) { jump_threshold_ = value; }
