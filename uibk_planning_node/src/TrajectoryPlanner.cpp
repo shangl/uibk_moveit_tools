@@ -5,8 +5,7 @@
 #include <moveit_msgs/ExecuteKnownTrajectory.h>
 #include <moveit_msgs/ExecuteKnownTrajectoryRequest.h>
 
-#include "TrajectoryPlanner.h"
-#include "TrajectoryPlanner.h"
+#include <uibk_planning_node/TrajectoryPlanner.h>
 
 using namespace std;
 

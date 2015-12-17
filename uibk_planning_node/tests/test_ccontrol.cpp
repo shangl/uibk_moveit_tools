@@ -1,12 +1,11 @@
 #include <ros/ros.h>
 #include <moveit_msgs/MotionPlanResponse.h>
 #include <moveit_msgs/ExecuteKnownTrajectory.h>
+#include <uibk_planning_node/TrajectoryPlanner.h>
 #include <moveit_msgs/ExecuteKnownTrajectoryRequest.h>
 
 #include "../src/conversions.hpp"
 #include "../src/KinematicsHelper.h"
-#include "../src/TrajectoryPlanner.h"
-#include "../src/TrajectoryPlanner.h"
 
 using namespace std;
 

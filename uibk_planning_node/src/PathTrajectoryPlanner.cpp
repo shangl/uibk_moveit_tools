@@ -1,7 +1,7 @@
 #include "conversions.hpp"
 
 #include <moveit/kinematic_constraints/utils.h>
-#include "PathTrajectoryPlanner.h"
+#include <uibk_planning_node/PathTrajectoryPlanner.h>
 
 using namespace std;
 
