@@ -22,15 +22,19 @@ namespace trajectory_planner_moveit {
 class KinematicsHelper {
 
 private:
+
+    std::string ikTopic;
+    std::string fkTopic;
+
 	ros::ServiceClient ik_client_;
 	ros::ServiceClient fk_client_;
 
-	bool computeIKInternal(const moveit_msgs::GetPositionIKRequest &request, moveit_msgs::RobotState &solution);
+    bool computeIKInternal(const moveit_msgs::GetPositionIKRequest &request, moveit_msgs::RobotState &solution);
 
 public:
 
-    KinematicsHelper(ros::NodeHandle &nh);
-	~KinematicsHelper() {}
+    KinematicsHelper(ros::NodeHandle &nh, std::string ikTopic = "compute_ik", std::string fkTopic = "compute_ik");
+    ~KinematicsHelper();
 
 
 	/**
@@ -50,7 +54,7 @@ public:
 	 * @param timeout
 	 * @return true on success
 	 */
-    bool computeIK(const std::string &arm,
+    bool computeIK(const std::string &groupName,
 				   const geometry_msgs::PoseStamped &goal,
 				   moveit_msgs::RobotState &solution,
 				   const bool avoid_collisions = true,
@@ -73,7 +77,7 @@ public:
 	 * @param timeout
 	 * @return
 	 */
-    bool computeIK(const std::string &arm,
+    bool computeIK(const std::string &groupName,
 				   const geometry_msgs::PoseStamped &goal,
 				   const sensor_msgs::JointState &seed_state,
 				   moveit_msgs::RobotState &solution,

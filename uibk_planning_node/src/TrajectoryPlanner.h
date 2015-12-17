@@ -6,13 +6,13 @@
 #include <geometry_msgs/Pose.h>
 #include <moveit_msgs/GetMotionPlan.h>
 
-#include <uibk_planning_node/KinematicsHelper.h>
-#include <uibk_planning_node/PlannerBase.h>
-
+#include "PlannerBase.h"
+#include "KinematicsHelper.h"
 
 #define CAN_LOOK false
 #define ALLOW_REPLAN false
 #define FRAME_ID "world_link"
+#define UIBK_STD_GROUP_NAME "plan_kinematic_path"
 
 namespace trajectory_planner_moveit {
 
@@ -20,22 +20,27 @@ class TrajectoryPlanner : public PlannerBase {
 
 private:
 
+    int max_traj_pts_;
+    int planning_attempts_;
+
 	double planning_time_;
-	int planning_attempts_;
+    double goal_joint_tolerance_;
+    double goal_position_tolerance_;
+    double goal_orientation_tolerance_;
+
 	std::string planner_id_;
-	int max_traj_pts_;
-	double goal_joint_tolerance_;
-	double goal_position_tolerance_;
-	double goal_orientation_tolerance_;
+
+    std::vector<std::string> jointNames;
+
+    KinematicsHelper kin_helper_;
 
 	ros::ServiceClient planning_client_;
-	KinematicsHelper kin_helper_;
 
     ros::NodeHandle nh;
 
 public:
 
-	TrajectoryPlanner(ros::NodeHandle &nh);
+    TrajectoryPlanner(ros::NodeHandle &nh, std::string groupName, const std::vector<std::string> jointNames, std::string kinematicPathTopic = UIBK_STD_GROUP_NAME);
 
 	~TrajectoryPlanner();
 

@@ -1,4 +1,4 @@
-#include <uibk_planning_node/VisualizationTools.h>
+#include "VisualizationTools.h"
 
 using namespace std;
 

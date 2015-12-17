@@ -1,21 +1,25 @@
 #include <ros/ros.h>
 #include <boost/shared_ptr.hpp>
 #include <geometry_msgs/Pose.h>
-#include <uibk_planning_node/TrajectoryPlanner.h>
-#include <uibk_planning_node/KinematicsHelper.h>
-
 #include <moveit_msgs/MotionPlanResponse.h>
 #include <moveit_msgs/ExecuteKnownTrajectory.h>
-#include <uibk_planning_node/TrajectoryPlanner.h>
 #include <moveit_msgs/ExecuteKnownTrajectoryRequest.h>
+
+#include "../src/conversions.hpp"
+#include "../src/KinematicsHelper.h"
+#include "../src/TrajectoryPlanner.h"
+#include "../src/TrajectoryPlanner.h"
+
+using namespace std;
 
 int main(int argc, char *argv[]) {
 
     ros::init(argc, argv, "test_traj_planner");
     ros::NodeHandle nh;
 
-    trajectory_planner_moveit::TrajectoryPlanner planner(nh);
-    planner.setArm("right");
+    vector<string> jointNames;
+    getArmJointNames("right", jointNames);
+    trajectory_planner_moveit::TrajectoryPlanner planner(nh, "right_arm", jointNames);
 
     trajectory_planner_moveit::KinematicsHelper ki_helper(nh);
     moveit_msgs::MotionPlanResponse plan;

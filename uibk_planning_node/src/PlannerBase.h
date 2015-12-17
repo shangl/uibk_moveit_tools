@@ -13,7 +13,7 @@ class PlannerBase {
 
 protected:
 
-    std::string arm_;
+    std::string groupName;
 
 public:
 
@@ -23,8 +23,8 @@ public:
     virtual bool plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution) = 0;
     virtual bool plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state) = 0;
 
-    void setArm(const std::string &arm) { arm_ = arm; }
-    std::string getArm() { return arm_; }
+    void setMoveGroup(const std::string& groupName) { this->groupName = groupName; }
+    std::string getMoveGroup() { return groupName; }
 
 };
 

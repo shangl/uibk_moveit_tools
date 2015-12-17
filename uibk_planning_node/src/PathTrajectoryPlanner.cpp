@@ -1,38 +1,39 @@
 #include "conversions.hpp"
 
 #include <moveit/kinematic_constraints/utils.h>
-#include <uibk_planning_node/PathTrajectoryPlanner.h>
+#include "PathTrajectoryPlanner.h"
 
 using namespace std;
 
 namespace trajectory_planner_moveit {
 
-PathTrajectoryPlanner::PathTrajectoryPlanner(ros::NodeHandle &nh) : trajectory_planner_(nh) {
+PathTrajectoryPlanner::PathTrajectoryPlanner(ros::NodeHandle &nh, string groupName, std::vector<std::string> jointNames, string finalLinkName, std::string kinematicPathTopic) : trajectory_planner_(nh, groupName, jointNames, kinematicPathTopic) {
 
     ROS_INFO("Connecting to planning service...");
 
     string topic = "compute_cartesian_path";
     planning_client_ = nh.serviceClient<moveit_msgs::GetCartesianPath>(topic);
 
+    this->jointNames = jointNames;
+    this->finalLinkName = finalLinkName;
+
     // set some default values
-    arm_ = "right";
     jump_threshold_ = 0.0;
     eef_step_ = 0.01;
 }
 
-bool PathTrajectoryPlanner::plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution)
-{
+bool PathTrajectoryPlanner::plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution) {
     // execute planning with empty start state
     sensor_msgs::JointState start_state;
     return plan(goal, solution, start_state);
 }
 
-const string PathTrajectoryPlanner::getName() { return "PathTrajectoryPlanner"; }
+const string PathTrajectoryPlanner::getName() {
+    return "PathTrajectoryPlanner";
+}
 
-bool PathTrajectoryPlanner::plan(const geometry_msgs::Pose &goal,
-                             moveit_msgs::MotionPlanResponse &solution,
-                             const sensor_msgs::JointState &start_state)
-{
+bool PathTrajectoryPlanner::plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state) {
+
     if (!planning_client_.exists()) {
         ROS_ERROR_STREAM("Unable to connect to planning service - ensure that MoveIt is launched!");
         return false;
@@ -47,8 +48,8 @@ bool PathTrajectoryPlanner::plan(const geometry_msgs::Pose &goal,
     request.header.frame_id = FRAME_ID;
     request.header.stamp = ros::Time::now();
 
-    request.group_name = arm_ + "_arm";
-    request.link_name = arm_ + "_arm_7_link";
+    request.group_name = trajectory_planner_.getMoveGroup();
+    request.link_name = finalLinkName;
     request.jump_threshold = jump_threshold_;
     request.max_step = eef_step_;
     request.avoid_collisions = true;

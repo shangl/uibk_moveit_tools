@@ -1,11 +1,11 @@
 #ifndef TRAJECTORYTOOLS_H
 #define TRAJECTORYTOOLS_H
 
-#include <moveit_msgs/RobotTrajectory.h>
-#include <uibk_planning_node/KinematicsHelper.h>
-
 #include <Eigen/Core>
 #include <Eigen/Geometry>
+#include <moveit_msgs/RobotTrajectory.h>
+
+#include "KinematicsHelper.h"
 
 namespace trajectory_planner_moveit {
 

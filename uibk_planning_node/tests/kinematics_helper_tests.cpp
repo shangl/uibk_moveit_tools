@@ -1,5 +1,5 @@
 #include "../src/conversions.hpp"
-#include <uibk_planning_node/KinematicsHelper.h>
+#include "../src/KinematicsHelper.h"
 
 using namespace trajectory_planner_moveit;
 using namespace std;

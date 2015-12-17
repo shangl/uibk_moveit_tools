@@ -1,18 +1,24 @@
 #include <ros/ros.h>
-#include <uibk_planning_node/TrajectoryPlanner.h>
-#include <uibk_planning_node/KinematicsHelper.h>
 #include <moveit_msgs/MotionPlanResponse.h>
 #include <moveit_msgs/ExecuteKnownTrajectory.h>
-#include <uibk_planning_node/TrajectoryPlanner.h>
 #include <moveit_msgs/ExecuteKnownTrajectoryRequest.h>
+
+#include "../src/conversions.hpp"
+#include "../src/KinematicsHelper.h"
+#include "../src/TrajectoryPlanner.h"
+#include "../src/TrajectoryPlanner.h"
+
+using namespace std;
 
 int main(int argc, char *argv[]) {
 
     ros::init(argc, argv, "test_ccontrol"); ros::NodeHandle* node = new ros::NodeHandle(); usleep(1e6);
 
+    vector<string> jointNames;
+    getArmJointNames("right", jointNames);
+
     boost::shared_ptr<trajectory_planner_moveit::TrajectoryPlanner> plannerPtr;
-    plannerPtr = boost::shared_ptr<trajectory_planner_moveit::TrajectoryPlanner>(new trajectory_planner_moveit::TrajectoryPlanner(*node));
-    plannerPtr->setArm("right");
+    plannerPtr = boost::shared_ptr<trajectory_planner_moveit::TrajectoryPlanner>(new trajectory_planner_moveit::TrajectoryPlanner(*node, "right_arm", jointNames));
     plannerPtr->setPlannerId("LBKPIECEkConfigDefault");
 
     geometry_msgs::Pose goal1;

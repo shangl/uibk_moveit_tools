@@ -1,28 +1,29 @@
 #include "conversions.hpp"
 
-#include <uibk_planning_node/TrajectoryPlanner.h>
-#include <moveit/kinematic_constraints/utils.h>
 #include <moveit_msgs/MotionPlanResponse.h>
+#include <moveit/kinematic_constraints/utils.h>
 #include <moveit_msgs/ExecuteKnownTrajectory.h>
-#include <uibk_planning_node/TrajectoryPlanner.h>
 #include <moveit_msgs/ExecuteKnownTrajectoryRequest.h>
+
+#include "TrajectoryPlanner.h"
+#include "TrajectoryPlanner.h"
 
 using namespace std;
 
 namespace trajectory_planner_moveit {
 
-TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh)
-    :kin_helper_(nh)
-{
+TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh, std::string groupName, const std::vector<string> jointNames, std::string kinematicPathTopic) : kin_helper_(nh) {
 
     this->nh = nh;
     ROS_INFO("Connecting to planning service...");
 
-    string topic = "plan_kinematic_path";
+    string topic = kinematicPathTopic;
     planning_client_ = nh.serviceClient<moveit_msgs::GetMotionPlan>(topic);
 
+    this->groupName = groupName;
+    this->jointNames = jointNames;
+
     // set some default values
-    arm_ = "right";
     planning_time_ = 5.0;
     planning_attempts_ = 5;
     max_traj_pts_ = 50;
@@ -33,7 +34,9 @@ TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh)
 
 }
 
-TrajectoryPlanner::~TrajectoryPlanner() {}
+TrajectoryPlanner::~TrajectoryPlanner() {
+
+}
 
 bool TrajectoryPlanner::executePlan(moveit_msgs::RobotTrajectory& trajectory, ros::ServiceClient& execution_client) {
 
@@ -72,31 +75,50 @@ bool TrajectoryPlanner::executePlan(moveit_msgs::MotionPlanResponse& trajectory)
     return executePlan(trajectory, execution_client);
 }
 
-void TrajectoryPlanner::setPlannerId(const string &planner_id) { planner_id_ = planner_id; }
-string TrajectoryPlanner::getPlannerId() { return planner_id_; }
-
-void TrajectoryPlanner::setAllowedPlanningTime(double value) { planning_time_ = value; }
-double TrajectoryPlanner::getAllowedPlanningTime() { return planning_time_; }
-
-void TrajectoryPlanner::setPlanningAttempts(int value) { planning_attempts_ = value; }
-int TrajectoryPlanner::getPlanningAttempts() { return planning_attempts_; }
-
-void TrajectoryPlanner::setMaxTrajectoryPoints(int value) { max_traj_pts_ = value; }
-int TrajectoryPlanner::getMaxTrajectoryPoints() { return max_traj_pts_; }
-
-const string TrajectoryPlanner::getName() { return "TrajectoryPlanner"; }
-
-bool TrajectoryPlanner::plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution)
-{
-	// execute planning with empty start state
-	sensor_msgs::JointState start_state;
-	return plan(goal, solution, start_state);
+void TrajectoryPlanner::setPlannerId(const string &planner_id) {
+    planner_id_ = planner_id;
 }
 
-bool TrajectoryPlanner::plan(const geometry_msgs::Pose &goal,
-							 moveit_msgs::MotionPlanResponse &solution,
-							 const sensor_msgs::JointState &start_state)
-{
+string TrajectoryPlanner::getPlannerId() {
+    return planner_id_;
+}
+
+void TrajectoryPlanner::setAllowedPlanningTime(double value) {
+    planning_time_ = value;
+}
+
+double TrajectoryPlanner::getAllowedPlanningTime() {
+    return planning_time_;
+}
+
+void TrajectoryPlanner::setPlanningAttempts(int value) {
+    planning_attempts_ = value;
+}
+
+int TrajectoryPlanner::getPlanningAttempts() {
+    return planning_attempts_;
+}
+
+void TrajectoryPlanner::setMaxTrajectoryPoints(int value) {
+    max_traj_pts_ = value;
+}
+
+int TrajectoryPlanner::getMaxTrajectoryPoints() {
+    return max_traj_pts_;
+}
+
+const string TrajectoryPlanner::getName() {
+    return "TrajectoryPlanner";
+}
+
+bool TrajectoryPlanner::plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution) {
+	// execute planning with empty start state
+	sensor_msgs::JointState start_state;
+    return plan(goal, solution, start_state);
+}
+
+bool TrajectoryPlanner::plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state) {
+
 	if (!planning_client_.exists()) {
 		ROS_ERROR_STREAM("Unable to connect to planning service - ensure that MoveIt is launched!");
 
@@ -106,16 +128,15 @@ bool TrajectoryPlanner::plan(const geometry_msgs::Pose &goal,
 	moveit_msgs::GetMotionPlanRequest get_mp_request;
 	moveit_msgs::MotionPlanRequest &request = get_mp_request.motion_plan_request;
 
-	request.group_name = arm_ + "_arm";
+    request.group_name = groupName;
 	request.num_planning_attempts = planning_attempts_;
 	request.allowed_planning_time = planning_time_;
 	request.planner_id = planner_id_;
 	request.start_state.joint_state = start_state;
 
-	ROS_DEBUG("Computing possible IK solutions for goal pose");
+    ROS_DEBUG("Computing possible IK solutions for goal pose");
 
-	vector<string> joint_names;
-	getArmJointNames(arm_, joint_names);
+    vector<string> joint_names = jointNames;
 
 	// compute a set of ik solutions and construct goal constraint
 	for (int i = 0; i < 5; ++i) {
@@ -126,7 +147,7 @@ bool TrajectoryPlanner::plan(const geometry_msgs::Pose &goal,
 		pose_goal.header.frame_id = FRAME_ID;
 		pose_goal.pose = goal;
 
-		if(kin_helper_.computeIK(arm_, pose_goal, start_state, ik_solution)) {
+        if(kin_helper_.computeIK(groupName, pose_goal, start_state, ik_solution)) {
 			vector<double> values;
 			getJointPositionsFromState(joint_names, ik_solution, values);
 

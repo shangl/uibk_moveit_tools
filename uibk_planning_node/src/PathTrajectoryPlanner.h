@@ -2,13 +2,11 @@
 #define PATHTRAJECTORYPLANNER_H
 
 #include <ros/ros.h>
-
 #include <geometry_msgs/Pose.h>
 #include <moveit_msgs/GetCartesianPath.h>
-#include <uibk_planning_node/PlannerBase.h>
-#include <uibk_planning_node/TrajectoryPlanner.h>
 
-#define FRAME_ID "world_link"
+#include "PlannerBase.h"
+#include "TrajectoryPlanner.h"
 
 namespace trajectory_planner_moveit {
 
@@ -17,16 +15,21 @@ class PathTrajectoryPlanner : public PlannerBase {
 
 private:
 
-    double jump_threshold_;
     double eef_step_;
+    double jump_threshold_;
+
+    std::string finalLinkName;
+
     TrajectoryPlanner trajectory_planner_;
+
+    std::vector<std::string> jointNames;
 
     ros::ServiceClient planning_client_;
 
 
 public:
 
-    PathTrajectoryPlanner(ros::NodeHandle &nh);
+    PathTrajectoryPlanner(ros::NodeHandle &nh, std::string groupName, std::vector<std::string> jointNames, std::string finalLinkName, std::string kinematicPathTopic = UIBK_STD_GROUP_NAME);
     ~PathTrajectoryPlanner() {}
 
     void setJumpThreshold(double value) { jump_threshold_ = value; }

@@ -1,4 +1,4 @@
-#include <uibk_planning_node/TrajectoryTools.h>
+#include "TrajectoryTools.h"
 
 using namespace std;
 

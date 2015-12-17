@@ -1,49 +1,35 @@
-//// ros headers
-
-
-//// local headers
-#include <uibk_planning_node/KinematicsHelper.h>
-
+#include "KinematicsHelper.h"
 
 using namespace std;
 using namespace ros;
 
 namespace trajectory_planner_moveit {
 
-
-KinematicsHelper::KinematicsHelper(NodeHandle &nh)
-{
-	ik_client_ = nh.serviceClient<moveit_msgs::GetPositionIK>("compute_ik");
-//	ik_client_.waitForExistence();
-	fk_client_ = nh.serviceClient<moveit_msgs::GetPositionFK>("compute_fk");
-//	fk_client_.waitForExistence();
+KinematicsHelper::KinematicsHelper(NodeHandle &nh, string ikTopic, string fkTopic) {
+    this->ikTopic = ikTopic;
+    this->fkTopic = fkTopic;
+    ik_client_ = nh.serviceClient<moveit_msgs::GetPositionIK>(ikTopic);
+    fk_client_ = nh.serviceClient<moveit_msgs::GetPositionFK>(fkTopic);
 }
 
-bool KinematicsHelper::computeIK(const string &arm,
-								 const geometry_msgs::PoseStamped &goal,
-								 moveit_msgs::RobotState &solution,
-								 const bool avoid_collisions,
-								 const int attempts,
-								 const double timeout)
-{
+KinematicsHelper::~KinematicsHelper() {
+
+}
+
+bool KinematicsHelper::computeIK(const string &groupName, const geometry_msgs::PoseStamped &goal, moveit_msgs::RobotState &solution, const bool avoid_collisions, const int attempts, const double timeout) {
+
 	sensor_msgs::JointState state;
+    return computeIK(groupName, goal, state, solution, avoid_collisions, attempts, timeout);
 
-	return computeIK(arm, goal, state, solution, avoid_collisions, attempts, timeout);
 }
 
-bool KinematicsHelper::computeIK(const string &arm,
-								 const geometry_msgs::PoseStamped &goal,
-								 const sensor_msgs::JointState &seed_state,
-								 moveit_msgs::RobotState &solution,
-								 const bool avoid_collisions,
-								 const int attempts,
-								 const double timeout)
-{
-	ROS_DEBUG_NAMED("KinematicsHelper", "IK request received for group '%s'", arm.c_str());
+bool KinematicsHelper::computeIK(const string &groupName, const geometry_msgs::PoseStamped &goal, const sensor_msgs::JointState &seed_state, moveit_msgs::RobotState &solution, const bool avoid_collisions, const int attempts, const double timeout) {
+
+    ROS_DEBUG_NAMED("KinematicsHelper", "IK request received for group '%s'", groupName.c_str());
 
 	moveit_msgs::GetPositionIKRequest request;
 
-	request.ik_request.group_name = arm + "_arm";
+    request.ik_request.group_name = groupName;
 	request.ik_request.pose_stamped = goal;
 	request.ik_request.attempts = attempts;
 	request.ik_request.timeout = ros::Duration(timeout);
@@ -53,14 +39,10 @@ bool KinematicsHelper::computeIK(const string &arm,
 	seed.joint_state = seed_state;
 	request.ik_request.robot_state = seed;
 
-	//	request.ik_request.ik_link_name = link_name;
-	//	request.ik_request.constraints = constraints;
-
 	return computeIKInternal(request, solution);
 }
 
-bool KinematicsHelper::computeIKInternal(const moveit_msgs::GetPositionIKRequest &request, moveit_msgs::RobotState &solution)
-{
+bool KinematicsHelper::computeIKInternal(const moveit_msgs::GetPositionIKRequest &request, moveit_msgs::RobotState &solution) {
 	moveit_msgs::GetPositionIKResponse response;
 
 	ROS_DEBUG_NAMED("KinematicsHelper", "Calling IK Service...");
@@ -88,11 +70,7 @@ bool KinematicsHelper::computeIKInternal(const moveit_msgs::GetPositionIKRequest
 	}
 }
 
-bool KinematicsHelper::computeFK(const moveit_msgs::RobotState &state,
-								 const string &link_name,
-								 geometry_msgs::Pose &solution,
-								 const string &frame_id)
-{
+bool KinematicsHelper::computeFK(const moveit_msgs::RobotState &state, const string &link_name, geometry_msgs::Pose &solution, const string &frame_id) {
 	ROS_DEBUG_NAMED("KinematicsHelper", "FK request received for link '%s'.", link_name.c_str());
 
 	if(!fk_client_.exists()) {
