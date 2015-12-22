@@ -175,9 +175,11 @@ bool TrajectoryPlanner::plan(std::vector<double> &jointPos, moveit_msgs::MotionP
 }
 
 bool TrajectoryPlanner::plan(const geometry_msgs::PoseStamped &goal, moveit_msgs::MotionPlanResponse &solution) {
-	// execute planning with empty start state
-	sensor_msgs::JointState start_state;
+
+    sensor_msgs::JointState start_state;
+    start_state.position = _group.getCurrentJointValues();
     return plan(goal, solution, start_state);
+
 }
 
 bool TrajectoryPlanner::plan(const geometry_msgs::PoseStamped &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state) {
@@ -262,6 +264,7 @@ bool TrajectoryPlanner::plan(const geometry_msgs::PoseStamped &goal, moveit_msgs
 		ROS_DEBUG_STREAM("Planning failed with status code '" << solution.error_code.val << "'");
 		return false;
 	}
+
 }
 
 
