@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 	goal1.orientation.z = -0.0464803;
 	goal1.orientation.w = 0.22556;
 
-	geometry_msgs::Pose goal2;
+    geometry_msgs::Pose goal2;
 
 	goal2.position.x = 0.186961;
 	goal2.position.y = 0.424272;
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
 
 	ROS_INFO("Computing test pose 1");
 	// call the function in our helper class.
-	if(helper.computeIK("right", pose, solution)) {
+    if(helper.computeIK("right_arm", pose, solution)) {
 		printSolution(solution);
 		geometry_msgs::Pose pose;
 		ROS_INFO("Computing FK result for given solution");

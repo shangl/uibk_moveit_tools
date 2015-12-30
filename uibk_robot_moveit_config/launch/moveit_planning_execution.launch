@@ -6,12 +6,15 @@
   # this argument controls wheather to choose configuration for simulated or real robot
   # default value is 'simulation'
   <arg name="simulation" default="true"/>
+  <arg name="gui" default="false"/>
    
   <arg unless="$(arg simulation)" name="controllers" value="right_arm left_arm joint_state_controller" />
   <arg     if="$(arg simulation)" name="controllers" value="right_arm left_arm right_sdh left_sdh joint_state_controller" />
   
   <arg unless="$(arg simulation)" name="ns" value="real" />
   <arg     if="$(arg simulation)" name="ns" value="simulation" />
+  
+  <include if="$(arg gui)" file="$(find iis_fast_ik)/launch/kinematics.launch" />
   
   <group ns="$(arg ns)">
       
