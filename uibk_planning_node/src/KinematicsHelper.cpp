@@ -34,6 +34,7 @@ bool KinematicsHelper::computeIK(const string &groupName, const geometry_msgs::P
 	request.ik_request.attempts = attempts;
 	request.ik_request.timeout = ros::Duration(timeout);
 	request.ik_request.avoid_collisions = avoid_collisions;
+    request.ik_request.ik_link_name = "link5";
 
 	moveit_msgs::RobotState seed;
 	seed.joint_state = seed_state;
@@ -46,7 +47,6 @@ bool KinematicsHelper::computeIKInternal(const moveit_msgs::GetPositionIKRequest
 	moveit_msgs::GetPositionIKResponse response;
 
 	ROS_DEBUG_NAMED("KinematicsHelper", "Calling IK Service...");
-
 	if(!ik_client_.exists()) {
 		ROS_ERROR("The IK service client is not accessable - maybe MoveIt was not lauched correctly.");
 		return false;
@@ -59,7 +59,7 @@ bool KinematicsHelper::computeIKInternal(const moveit_msgs::GetPositionIKRequest
 			ROS_DEBUG_NAMED("KinematicsHelper", "IK solution successfully calculated");
 
 			return true;
-		} else {
+        } else {
 			ROS_WARN_NAMED("KinematicsHelper", "IK calculation failed with error code '%d'", response.error_code.val);
 			return false;
 		}

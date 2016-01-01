@@ -5,13 +5,13 @@
 
 #include <geometry_msgs/Pose.h>
 #include <moveit_msgs/GetMotionPlan.h>
+#include <moveit/move_group_interface/move_group.h>
 
 #include "../../src/PlannerBase.h"
 #include "../../src/KinematicsHelper.h"
 
 #define CAN_LOOK false
 #define ALLOW_REPLAN false
-#define FRAME_ID "world_link"
 #define UIBK_STD_GROUP_NAME "plan_kinematic_path"
 
 namespace trajectory_planner_moveit {
@@ -34,13 +34,15 @@ private:
 
     KinematicsHelper kin_helper_;
 
+    moveit::planning_interface::MoveGroup _group;
+
 	ros::ServiceClient planning_client_;
 
     ros::NodeHandle nh;
 
 public:
 
-    TrajectoryPlanner(ros::NodeHandle &nh, std::string groupName, const std::vector<std::string> jointNames, std::string kinematicPathTopic = UIBK_STD_GROUP_NAME);
+    TrajectoryPlanner(ros::NodeHandle &nh, moveit::planning_interface::MoveGroup &group, const std::vector<std::string> jointNames, std::string kinematicPathTopic = UIBK_STD_GROUP_NAME);
 
 	~TrajectoryPlanner();
 
@@ -58,8 +60,9 @@ public:
 
     const std::string getName();
 
-    virtual bool plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution);
-    virtual bool plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state);
+    virtual bool plan(std::vector<double> &jointPos, moveit_msgs::MotionPlanResponse &solution);
+    virtual bool plan(const geometry_msgs::PoseStamped &goal, moveit_msgs::MotionPlanResponse &solution);
+    virtual bool plan(const geometry_msgs::PoseStamped &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state);
 
     virtual bool executePlan(moveit_msgs::RobotTrajectory& trajectory);
     virtual bool executePlan(moveit_msgs::MotionPlanResponse& trajectory);

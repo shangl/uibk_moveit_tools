@@ -29,7 +29,7 @@ private:
 
 public:
 
-    PathTrajectoryPlanner(ros::NodeHandle &nh, std::string groupName, std::vector<std::string> jointNames, std::string finalLinkName, std::string kinematicPathTopic = UIBK_STD_GROUP_NAME);
+    PathTrajectoryPlanner(ros::NodeHandle &nh, moveit::planning_interface::MoveGroup& group, std::vector<std::string> jointNames, std::string finalLinkName, std::string kinematicPathTopic = UIBK_STD_GROUP_NAME);
     ~PathTrajectoryPlanner() {}
 
     void setJumpThreshold(double value) { jump_threshold_ = value; }
@@ -40,8 +40,8 @@ public:
 
     const std::string getName();
 
-    virtual bool plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution);
-    virtual bool plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state);
+    virtual bool plan(const geometry_msgs::PoseStamped &goal, moveit_msgs::MotionPlanResponse &solution);
+    virtual bool plan(const geometry_msgs::PoseStamped &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state);
 
 };
 

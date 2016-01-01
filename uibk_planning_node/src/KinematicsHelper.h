@@ -33,7 +33,7 @@ private:
 
 public:
 
-    KinematicsHelper(ros::NodeHandle &nh, std::string ikTopic = "compute_ik", std::string fkTopic = "compute_ik");
+    KinematicsHelper(ros::NodeHandle &nh, std::string ikTopic = "compute_ik", std::string fkTopic = "compute_fk");
     ~KinematicsHelper();
 
 

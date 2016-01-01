@@ -3,6 +3,7 @@
 #include <moveit_msgs/MotionPlanResponse.h>
 #include <moveit/kinematic_constraints/utils.h>
 #include <moveit_msgs/ExecuteKnownTrajectory.h>
+#include <moveit/move_group_interface/move_group.h>
 #include <moveit_msgs/ExecuteKnownTrajectoryRequest.h>
 
 #include <uibk_planning_node/TrajectoryPlanner.h>
@@ -11,7 +12,7 @@ using namespace std;
 
 namespace trajectory_planner_moveit {
 
-TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh, std::string groupName, const std::vector<string> jointNames, std::string kinematicPathTopic) : kin_helper_(nh) {
+TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh, moveit::planning_interface::MoveGroup& group, const std::vector<string> jointNames, std::string kinematicPathTopic) : kin_helper_(nh), _group(group) {
 
     this->nh = nh;
     ROS_INFO("Connecting to planning service...");
@@ -19,7 +20,7 @@ TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh, std::string groupName,
     string topic = kinematicPathTopic;
     planning_client_ = nh.serviceClient<moveit_msgs::GetMotionPlan>(topic);
 
-    this->groupName = groupName;
+    this->groupName = group.getName();
     this->jointNames = jointNames;
 
     // set some default values
@@ -47,7 +48,7 @@ bool TrajectoryPlanner::executePlan(moveit_msgs::RobotTrajectory& trajectory, ro
     if (success) {
         moveit_msgs::MoveItErrorCodes &code = msg.response.error_code;
         if (code.val == moveit_msgs::MoveItErrorCodes::SUCCESS) {
-            ROS_INFO("Execution finished successfully.");
+        //    ROS_INFO("Execution finished successfully.");
         } else {
             ROS_ERROR("Execution finished with error_code '%d'", code.val);
             return false;
@@ -110,13 +111,78 @@ const string TrajectoryPlanner::getName() {
     return "TrajectoryPlanner";
 }
 
-bool TrajectoryPlanner::plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution) {
-	// execute planning with empty start state
-	sensor_msgs::JointState start_state;
-    return plan(goal, solution, start_state);
+bool TrajectoryPlanner::plan(std::vector<double> &jointPos, moveit_msgs::MotionPlanResponse &solution) {
+
+    sensor_msgs::JointState start_state;
+    start_state.position = _group.getCurrentJointValues();
+    if (!planning_client_.exists()) {
+        ROS_ERROR_STREAM("Unable to connect to planning service - ensure that MoveIt is launched!");
+
+        return false;
+    }
+
+    moveit_msgs::GetMotionPlanRequest get_mp_request;
+    moveit_msgs::MotionPlanRequest &request = get_mp_request.motion_plan_request;
+
+    request.group_name = groupName;
+    request.num_planning_attempts = planning_attempts_;
+    request.allowed_planning_time = planning_time_;
+    request.planner_id = planner_id_;
+    request.start_state.joint_state = start_state;
+
+    vector<string> joint_names = jointNames;
+
+    moveit_msgs::Constraints c;
+    c.joint_constraints.resize(joint_names.size());
+
+    for (int j = 0; j < joint_names.size(); ++j) {
+        moveit_msgs::JointConstraint &jc = c.joint_constraints[j];
+        jc.joint_name = joint_names[j];
+        jc.position = jointPos[j];
+        jc.tolerance_above = 1e-4;
+        jc.tolerance_below = 1e-4;
+        jc.weight = 1.0;
+    }
+    request.goal_constraints.push_back(c);
+
+    moveit_msgs::GetMotionPlanResponse get_mp_response;
+
+    bool success = planning_client_.call(get_mp_request, get_mp_response);
+    solution = get_mp_response.motion_plan_response;
+
+    if(success) {
+        int pts_count = (int)solution.trajectory.joint_trajectory.points.size();
+        int error_code = solution.error_code.val;
+
+        if(error_code != moveit_msgs::MoveItErrorCodes::SUCCESS) {
+            ROS_DEBUG_STREAM("Planning failed with status code '" << solution.error_code.val << "'");
+            return false;
+        }
+
+        if(pts_count > max_traj_pts_) {
+            ROS_WARN("Valid solution found but contains to many points.");
+            return false;
+        }
+
+        ROS_DEBUG("Solution found for planning problem .");
+        return true;
+
+    } else {
+        ROS_DEBUG_STREAM("Planning failed with status code '" << solution.error_code.val << "'");
+        return false;
+    }
+
 }
 
-bool TrajectoryPlanner::plan(const geometry_msgs::Pose &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state) {
+bool TrajectoryPlanner::plan(const geometry_msgs::PoseStamped &goal, moveit_msgs::MotionPlanResponse &solution) {
+
+    sensor_msgs::JointState start_state;
+    start_state.position = _group.getCurrentJointValues();
+    return plan(goal, solution, start_state);
+
+}
+
+bool TrajectoryPlanner::plan(const geometry_msgs::PoseStamped &goal, moveit_msgs::MotionPlanResponse &solution, const sensor_msgs::JointState &start_state) {
 
 	if (!planning_client_.exists()) {
 		ROS_ERROR_STREAM("Unable to connect to planning service - ensure that MoveIt is launched!");
@@ -141,12 +207,11 @@ bool TrajectoryPlanner::plan(const geometry_msgs::Pose &goal, moveit_msgs::Motio
 	for (int i = 0; i < 5; ++i) {
 		moveit_msgs::RobotState ik_solution;
 
-		geometry_msgs::PoseStamped pose_goal;
+        geometry_msgs::PoseStamped pose_goal = goal;
 		pose_goal.header.stamp = ros::Time::now();
-		pose_goal.header.frame_id = FRAME_ID;
-		pose_goal.pose = goal;
 
         if(kin_helper_.computeIK(groupName, pose_goal, start_state, ik_solution)) {
+        //if(kin_helper_.computeIK(groupName, pose_goal, start_state, ik_solution, false, 10, 10.0)) {
 			vector<double> values;
 			getJointPositionsFromState(joint_names, ik_solution, values);
 
@@ -199,6 +264,7 @@ bool TrajectoryPlanner::plan(const geometry_msgs::Pose &goal, moveit_msgs::Motio
 		ROS_DEBUG_STREAM("Planning failed with status code '" << solution.error_code.val << "'");
 		return false;
 	}
+
 }
 
 

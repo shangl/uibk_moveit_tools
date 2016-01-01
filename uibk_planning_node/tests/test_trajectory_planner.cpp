@@ -18,13 +18,17 @@ int main(int argc, char *argv[]) {
 
     vector<string> jointNames;
     getArmJointNames("right", jointNames);
-    trajectory_planner_moveit::TrajectoryPlanner planner(nh, "right_arm", jointNames);
+    moveit::planning_interface::MoveGroup group("right_arm");
+    trajectory_planner_moveit::TrajectoryPlanner planner(nh, group, jointNames);
 
     trajectory_planner_moveit::KinematicsHelper ki_helper(nh);
     moveit_msgs::MotionPlanResponse plan;
 
-    geometry_msgs::Pose goal1;
+    geometry_msgs::PoseStamped stampedGoal;
+    stampedGoal.header.frame_id = "world_link";
+    stampedGoal.header.stamp = ros::Time::now();
 
+    geometry_msgs::Pose goal1;
     goal1.position.x = 0.26;
     goal1.position.y = 0.20;
     goal1.position.z = 0.65;
@@ -33,7 +37,9 @@ int main(int argc, char *argv[]) {
     goal1.orientation.z = -0.0464803;
     goal1.orientation.w = 0.22556;
 
-    if(planner.plan(goal1, plan)) {
+    stampedGoal.pose = goal1;
+
+    if(planner.plan(stampedGoal, plan)) {
         ROS_INFO("Plan to goal1 found");
         moveit_msgs::RobotState state;
         geometry_msgs::Pose pose;
@@ -59,7 +65,9 @@ int main(int argc, char *argv[]) {
     goal2.orientation.z = 0.484887;
     goal2.orientation.w = -0.508336;
 
-    if(planner.plan(goal2, plan)) {
+    stampedGoal.pose = goal2;
+
+    if(planner.plan(stampedGoal, plan)) {
         ROS_INFO("Plan to goal2 found");
         moveit_msgs::RobotState state;
         geometry_msgs::Pose pose;
@@ -85,7 +93,9 @@ int main(int argc, char *argv[]) {
     goal3.orientation.z = 0.478419;
     goal3.orientation.w = -0.554418;
 
-    if(planner.plan(goal3, plan)) {
+    stampedGoal.pose = goal3;
+
+    if(planner.plan(stampedGoal, plan)) {
         ROS_INFO("Plan to goal3 found");
         moveit_msgs::RobotState state;
         geometry_msgs::Pose pose;

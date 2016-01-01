@@ -17,6 +17,7 @@ void printSolution(const moveit_msgs::RobotState &solution) {
 	for(size_t i = 0; i < joints.size(); ++i) {
 		ROS_INFO("%s: %1.4f", joints[i].c_str(), values[i]);
 	}
+
 }
 
 int main(int argc, char *argv[])
@@ -86,7 +87,7 @@ int main(int argc, char *argv[])
 	pose.pose = goal2;
 	cout << endl;
 	ROS_INFO("Computing test pose 2");
-	if(helper.computeIK("right", pose, solution)) {
+    if(helper.computeIK("right_arm", pose, solution)) {
 		printSolution(solution);
 		geometry_msgs::Pose pose;
 		ROS_INFO("Computing FK result for given solution");
@@ -103,7 +104,7 @@ int main(int argc, char *argv[])
 	pose.pose = goal3;
 	cout << endl;
 	ROS_INFO("Computing test pose 3");
-	if(helper.computeIK("right", pose, solution)) {
+    if(helper.computeIK("right_arm", pose, solution)) {
 		printSolution(solution);
 		geometry_msgs::Pose pose;
 		ROS_INFO("Computing FK result for given solution");
@@ -132,7 +133,7 @@ int main(int argc, char *argv[])
 
 	cout << endl;
 	ROS_INFO("Computing test pose with collision");
-	if(helper.computeIK("right", pose, solution, true)) {
+    if(helper.computeIK("right_arm", pose, solution, true)) {
 //		printSolution(solution);
 		ROS_ERROR("Computation with collision possible");
 		return EXIT_FAILURE;
@@ -142,7 +143,7 @@ int main(int argc, char *argv[])
 
 	cout << endl;
 	ROS_INFO("Computing same pose without collision avoidance");
-	if(helper.computeIK("right", pose, solution, false)) {
+    if(helper.computeIK("right_arm", pose, solution, false)) {
 //		printSolution(solution);
 		ROS_INFO("Solution found as expected");
 	} else {
@@ -164,7 +165,7 @@ int main(int argc, char *argv[])
 
 	cout << endl;
 	ROS_INFO("Computing same pose with seed state");
-	if(helper.computeIK("right", pose, seed, solution, false)) {
+    if(helper.computeIK("right_arm", pose, seed, solution, false)) {
 		printSolution(solution);
 		ROS_INFO("Solution found as expected");
 	} else {
