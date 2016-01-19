@@ -9,6 +9,7 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
+  <run_depend>iis_fast_ik</run_depend>
   <run_depend>iis_robot_dep</run_depend>
   <run_depend>uibk_moveit_config</run_depend>
   <run_depend>uibk_planning_node</run_depend>

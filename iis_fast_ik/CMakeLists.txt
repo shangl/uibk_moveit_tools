@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(iis_fast_ik)
 
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
@@ -21,23 +18,14 @@ catkin_package(
   CATKIN_DEPENDS roscpp moveit_core moveit_ros_planning_interface rospy std_msgs geometry_msgs
 )
 
-###########
-## Build ##
-###########
-
-## Specify additional locations of header files
-## Your package locations should be listed before other locations
-# include_directories(include)
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
 )
 
-## Declare a cpp library
 add_library(${PROJECT_NAME} src/kinematics.cpp)
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
-## Declare a cpp executable
 add_executable(kinematics_tests src/kinematics_tests.cpp)
 add_dependencies(kinematics_tests ${PROJECT_NAME})
 target_link_libraries(kinematics_tests ${PROJECT_NAME} ${catkin_LIBRARIES})

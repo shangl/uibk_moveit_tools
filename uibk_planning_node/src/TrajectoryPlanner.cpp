@@ -32,6 +32,8 @@ TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh, moveit::planning_inter
     goal_orientation_tolerance_ = 1e-3; // ~0.1 deg
     planner_id_ = "";
 
+    execution_client = nh.serviceClient<moveit_msgs::ExecuteKnownTrajectory>("execute_kinematic_path");
+
 }
 
 TrajectoryPlanner::~TrajectoryPlanner() {
@@ -66,12 +68,10 @@ bool TrajectoryPlanner::executePlan(moveit_msgs::MotionPlanResponse& trajectory,
 }
 
 bool TrajectoryPlanner::executePlan(moveit_msgs::RobotTrajectory& trajectory) {
-    ros::ServiceClient execution_client = nh.serviceClient<moveit_msgs::ExecuteKnownTrajectory>("execute_kinematic_path");
     return executePlan(trajectory, execution_client);
 }
 
 bool TrajectoryPlanner::executePlan(moveit_msgs::MotionPlanResponse& trajectory) {
-    ros::ServiceClient execution_client = nh.serviceClient<moveit_msgs::ExecuteKnownTrajectory>("execute_kinematic_path");
     return executePlan(trajectory, execution_client);
 }
 
