@@ -37,11 +37,11 @@
   <!-- draw the table relative to the parent link (table_plate_link), located in the top left corner  -->
   <xacro:model_table_surface name="table_surface"
 			      parent="table_plate"
-			      length="2.3"
+			      length="2.1"
 			      width="1.2"
 			      thickness="0.09">
     <!-- Place the table surface relative to the table plate -->
-    <origin xyz="-0.4 -0.04 0" />
+    <origin xyz="-0.4 -0.02 0" />
 
   </xacro:model_table_surface>
 
