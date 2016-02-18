@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(uibk_planning_node)
 
+find_package(cmake_modules REQUIRED)
+
 find_package(catkin REQUIRED COMPONENTS
     roscpp
     actionlib
@@ -12,7 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
     moveit_ros_planning_interface
 )
 
-find_package(cmake_modules REQUIRED)
+
 find_package(Boost REQUIRED)
 
 catkin_package(
@@ -50,3 +52,11 @@ target_link_libraries(test_trajectory_planner ${PROJECT_NAME} ${catkin_LIBRARIES
 add_executable(test_ccontrol tests/test_ccontrol.cpp)
 add_dependencies(test_ccontrol ${PROJECT_NAME})
 target_link_libraries(test_ccontrol ${PROJECT_NAME} ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+
+install(TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+install(DIRECTORY include/${PROJECT_NAME}/ DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
