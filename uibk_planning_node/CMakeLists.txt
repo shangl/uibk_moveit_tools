@@ -1,12 +1,7 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(uibk_planning_node)
 
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
-
-## find_package(catkin REQUIRED COMPONENTS moveit_core moveit_ros_planning moveit_ros_planning_interface pluginlib actionlib cmake_modules)
-find_package(catkin REQUIRED
+find_package(catkin REQUIRED COMPONENTS
     roscpp
     actionlib
     moveit_msgs
@@ -24,6 +19,7 @@ catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
   DEPENDS ${Boost_LIBRARIES}
+  CATKIN_DEPENDS moveit_core roscpp actionlib moveit_msgs geometry_msgs uibk_moveit_adapter uibk_robot_moveit_config moveit_ros_planning_interface
 )
 
 include_directories(
