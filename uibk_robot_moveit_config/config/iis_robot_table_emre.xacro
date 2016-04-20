@@ -4,7 +4,7 @@
   <xacro:include filename="$(find iis_robot)/urdf/torso.xacro"/>
   <xacro:include filename="$(find iis_robot)/urdf/table.xacro"/>
   <xacro:include filename="$(find iis_robot)/urdf/sdh_with_connector.xacro"/>
-  <xacro:include filename="$(find lwr_description)/urdf/kuka_lwr_arm_defs.xacro"/>
+  <xacro:include filename="$(find lwr_description)/urdf/kuka_lwr_arm_defs_emre.xacro"/>
   <xacro:include filename="$(find kit_head_description)/model/kit_head.urdf.xacro" />
 
   <!-- draw a small cross to visualize the origin of the world reference frame
@@ -37,11 +37,11 @@
   <!-- draw the table relative to the parent link (table_plate_link), located in the top left corner  -->
   <xacro:model_table_surface name="table_surface"
 			      parent="table_plate"
-			      length="2.1"
+			      length="2.3"
 			      width="1.2"
-			      thickness="0.09">
+			      thickness="0.04">
     <!-- Place the table surface relative to the table plate -->
-    <origin xyz="-0.4 -0.02 0" />
+    <origin xyz="-0.4 -0.04 0" />
 
   </xacro:model_table_surface>
 
@@ -51,23 +51,23 @@
   </xacro:model_torso>
 
   <!-- left arm with gripper -->
-  <xacro:kuka_lwr_arm parent="world" name="left" right="-1">
+  <xacro:kuka_left_lwr_arm parent="world" name="left" right="-1">
     <origin xyz="-0.4923 0.7541 0.6295"
 	    rpy="1.9485 -0.2114 2.6898"/>
-  </xacro:kuka_lwr_arm>
+  </xacro:kuka_left_lwr_arm>
 
   <xacro:sdh_with_connector parent="left_arm_7_link" name="left_sdh">
     <origin rpy="0 0 ${-1/2 * M_PI}"/>
   </xacro:sdh_with_connector>
 
   <!-- right arm with gripper -->
-  <xacro:kuka_lwr_arm parent="world" name="right" right="1">
+  <xacro:kuka_right_lwr_arm parent="world" name="right" right="1">
     <origin xyz="-0.4962 0.5992 0.6335"
 	    rpy="-2.0628 0.7628 -3.1287"/>
-  </xacro:kuka_lwr_arm>
+  </xacro:kuka_right_lwr_arm>
 
   <xacro:sdh_with_connector parent="right_arm_7_link" name="right_sdh">
-    <origin xyz="0.0 0.0 0.055" rpy="0 0 ${1/2 * M_PI}"/>
+    <origin xyz="0 0 0.055" rpy="0 0 ${1/2 * M_PI}"/>
   </xacro:sdh_with_connector>
 
   <!-- HEAD -->
