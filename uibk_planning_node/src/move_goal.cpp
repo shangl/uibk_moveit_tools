@@ -6,14 +6,20 @@
  */
 
 #include <ros/ros.h>
-
 #include <moveit/move_group_interface/move_group.h>
+
 #include <geometry_msgs/PoseStamped.h>
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 
 using namespace std;
 using namespace ros;
+
+#ifdef ROSKINETIC
+using namespace moveit::planning_interface;
+#else
+using namespace move_group_interface;
+#endif
 
 /**
  * Moves the end effector to given pose.
@@ -63,8 +69,8 @@ int main(int argc, char **argv) {
 
 	ROS_INFO("Connecting to planning group '%s'", planning_group_name.c_str());
 
-	// Create MoveGroup for one of the planning groups
-	move_group_interface::MoveGroup move_group(planning_group_name);
+    // Create MoveGroup for one of the planning groups
+    MoveGroup move_group(planning_group_name);
 	move_group.setPlanningTime(5.0);
 	move_group.setPoseReferenceFrame("world_link");
 
@@ -78,7 +84,7 @@ int main(int argc, char **argv) {
 	}
 
 	ROS_INFO("Calling planning service");
-	move_group_interface::MoveGroup::Plan plan;
+    MoveGroup::Plan plan;
 	if(!move_group.plan(plan)) {
 		ROS_ERROR("Planning failed!");
 		return EXIT_FAILURE;
