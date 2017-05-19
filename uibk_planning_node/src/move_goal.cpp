@@ -6,7 +6,12 @@
  */
 
 #include <ros/ros.h>
+
+#if ROS_VERSION_MINIMUM(1, 12, 0) // ROS KINETIC
+#include <moveit/move_group_interface/move_group_interface.h>
+#else //ROS Indigo and before
 #include <moveit/move_group_interface/move_group.h>
+#endif
 
 #include <geometry_msgs/PoseStamped.h>
 #include <Eigen/Core>
@@ -14,12 +19,6 @@
 
 using namespace std;
 using namespace ros;
-
-#ifdef ROSKINETIC
-using namespace moveit::planning_interface;
-#else
-using namespace move_group_interface;
-#endif
 
 /**
  * Moves the end effector to given pose.
@@ -69,8 +68,12 @@ int main(int argc, char **argv) {
 
 	ROS_INFO("Connecting to planning group '%s'", planning_group_name.c_str());
 
-    // Create MoveGroup for one of the planning groups
-    MoveGroup move_group(planning_group_name);
+	// Create MoveGroup for one of the planning groups
+#if ROS_VERSION_MINIMUM(1, 12, 0) // ROS KINETIC
+        moveit::planning_interface::MoveGroupInterface move_group(planning_group_name);
+#else   // ROS Indigo
+	move_group_interface::MoveGroup move_group(planning_group_name);
+#endif
 	move_group.setPlanningTime(5.0);
 	move_group.setPoseReferenceFrame("world_link");
 
@@ -84,7 +87,11 @@ int main(int argc, char **argv) {
 	}
 
 	ROS_INFO("Calling planning service");
-    MoveGroup::Plan plan;
+#if ROS_VERSION_MINIMUM(1, 12, 0) // ROS KINETIC
+	moveit::planning_interface::MoveGroupInterface::Plan plan;
+#else   // ROS Indigo
+	move_group_interface::MoveGroup::Plan plan;
+#endif
 	if(!move_group.plan(plan)) {
 		ROS_ERROR("Planning failed!");
 		return EXIT_FAILURE;
