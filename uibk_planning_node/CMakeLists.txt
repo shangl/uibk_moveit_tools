@@ -19,9 +19,8 @@ find_package(catkin REQUIRED COMPONENTS
     moveit_msgs
     moveit_core
     geometry_msgs
-    uibk_moveit_adapter
-    uibk_robot_moveit_config
     moveit_ros_planning_interface
+    eigen_conversions
 )
 
 find_package(cmake_modules REQUIRED)
@@ -31,7 +30,7 @@ catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
   DEPENDS ${Boost_LIBRARIES}
-  CATKIN_DEPENDS moveit_core roscpp actionlib moveit_msgs geometry_msgs uibk_moveit_adapter uibk_robot_moveit_config moveit_ros_planning_interface
+  CATKIN_DEPENDS moveit_core roscpp actionlib moveit_msgs geometry_msgs moveit_ros_planning_interface eigen_conversions
 )
 
 include_directories(
