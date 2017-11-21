@@ -7,6 +7,7 @@
   # default value is 'simulation'
   <arg name="simulation" default="true"/>
   <arg name="gui" default="false"/>
+  <arg name="rviz" default="true"/>
    
   <arg unless="$(arg simulation)" name="controllers" value="right_arm left_arm joint_state_controller" />
   <arg     if="$(arg simulation)" name="controllers" value="right_arm left_arm right_sdh left_sdh joint_state_controller" />
@@ -25,12 +26,12 @@
   
       # start an instance of our hardware_adapter
       <node name="hardware_adapter" 
-	    pkg="uibk_moveit_adapter" 
-	    type="hardware_adapter" 
-	    output="screen">
+      	    pkg="uibk_moveit_adapter" 
+      	    type="hardware_adapter" 
+      	    output="screen">
 
-	  <!-- upload the adapter configuration to the parameter server -->
-	  <rosparam command="load" file="$(find uibk_robot_moveit_config)/config/adapter_config.yaml" />
+      	  <!-- upload the adapter configuration to the parameter server -->
+      	  <rosparam command="load" file="$(find uibk_robot_moveit_config)/config/adapter_config.yaml" />
       </node>
       
       # Load controller configurations to the parameter server
@@ -50,7 +51,7 @@
       </include>
       
       # The visualization component of MoveIt!
-      <include file="$(find uibk_robot_moveit_config)/launch/moveit_rviz.launch">
+      <include if="$(arg rviz)" file="$(find uibk_robot_moveit_config)/launch/moveit_rviz.launch">
 	<arg name="config" value="true"/>
       </include>
       
