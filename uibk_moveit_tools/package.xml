@@ -13,7 +13,7 @@
   <run_depend>iis_robot_dep</run_depend>
   <run_depend>uibk_robot_moveit_config</run_depend>
   <run_depend>uibk_planning_node</run_depend>
-  <run_depend>uibk_moveit_adapter</run_depend>
+  <run_depend>iis_control</run_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
