@@ -28,8 +28,7 @@
       <node name="hardware_adapter" 
       	    pkg="iis_control" 
       	    type="hardware_adapter" 
-      	    output="screen"
-	    launch-prefix="xterm -e gdb --args">
+      	    output="screen">
 
       	  <!-- upload the adapter configuration to the parameter server -->
       	  <rosparam command="load" file="$(find uibk_robot_moveit_config)/config/adapter_config.yaml" />
