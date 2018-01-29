@@ -21,7 +21,12 @@
 #include <boost/shared_ptr.hpp>
 
 #include <actionlib/client/simple_action_client.h>
+#if ROS_VERSION_MINIMUM(1, 12, 0) // ROS KINETIC
+#include <moveit/move_group_interface/move_group_interface.h>
+#else //ROS Indigo and before
 #include <moveit/move_group_interface/move_group.h>
+#endif
+
 
 #include <moveit_msgs/ExecuteKnownTrajectory.h>
 #include <moveit_msgs/PickupAction.h>

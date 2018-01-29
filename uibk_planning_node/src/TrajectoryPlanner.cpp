@@ -3,7 +3,14 @@
 #include <moveit_msgs/MotionPlanResponse.h>
 #include <moveit/kinematic_constraints/utils.h>
 #include <moveit_msgs/ExecuteKnownTrajectory.h>
+
+#if ROS_VERSION_MINIMUM(1, 12, 0) // ROS KINETIC
+#include <moveit/move_group_interface/move_group_interface.h>
+#else //ROS Indigo and before
 #include <moveit/move_group_interface/move_group.h>
+#endif
+
+
 #include <moveit_msgs/ExecuteKnownTrajectoryRequest.h>
 
 #include <uibk_planning_node/TrajectoryPlanner.h>
@@ -12,7 +19,12 @@ using namespace std;
 
 namespace trajectory_planner_moveit {
 
-TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh, moveit::planning_interface::MoveGroup& group, const std::vector<string> jointNames, std::string kinematicPathTopic) : kin_helper_(nh), _group(group) {
+#if ROS_VERSION_MINIMUM(1, 12, 0) // ROS KINETIC
+  TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh, moveit::planning_interface::MoveGroupInterface& group, const std::vector<string> jointNames, std::string kinematicPathTopic) : kin_helper_(nh), _group(group) {
+#else //ROS Indigo and before
+  TrajectoryPlanner::TrajectoryPlanner(ros::NodeHandle &nh, moveit::planning_interface::MoveGroup& group, const std::vector<string> jointNames, std::string kinematicPathTopic) : kin_helper_(nh), _group(group) {
+#endif
+
 
     this->nh = nh;
     ROS_INFO("Connecting to planning service...");
