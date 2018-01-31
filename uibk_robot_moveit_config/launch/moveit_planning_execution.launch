@@ -25,7 +25,7 @@
       </include>
   
       # start an instance of our hardware_adapter
-      <node name="hardware_adapter" 
+      <node name="iis_control"
       	    pkg="iis_control" 
       	    type="hardware_adapter" 
       	    output="screen">
