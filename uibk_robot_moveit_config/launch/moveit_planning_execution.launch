@@ -28,7 +28,8 @@
       <node name="iis_control"
       	    pkg="iis_control" 
       	    type="hardware_adapter" 
-      	    output="screen">
+      	    output="screen"
+	    respawn="true">
 
       	  <!-- upload the adapter configuration to the parameter server -->
       	  <rosparam command="load" file="$(find uibk_robot_moveit_config)/config/adapter_config.yaml" />
