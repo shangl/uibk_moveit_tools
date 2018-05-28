@@ -147,7 +147,6 @@
     <disable_collisions link1="head_asus_link" link2="head_right_eye_link" reason="Default" />
     <disable_collisions link1="head_asus_link" link2="left_arm_1_link" reason="Never" />
     <disable_collisions link1="head_asus_link" link2="left_arm_2_link" reason="Never" />
-    <disable_collisions link1="head_asus_link" link2="left_arm_3_link" reason="Never" />
     <disable_collisions link1="head_asus_link" link2="left_arm_base_link" reason="Never" />
     <disable_collisions link1="head_asus_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="head_asus_link" link2="leg_1_link" reason="Never" />
@@ -157,6 +156,7 @@
     <disable_collisions link1="head_asus_link" link2="right_arm_2_link" reason="Never" />
     <disable_collisions link1="head_asus_link" link2="right_arm_base_link" reason="Never" />
     <disable_collisions link1="head_asus_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="head_asus_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="head_asus_link" link2="world_link" reason="Never" />
     <disable_collisions link1="head_head_1_link" link2="head_head_2_link" reason="Adjacent" />
     <disable_collisions link1="head_head_1_link" link2="head_head_3_link" reason="Default" />
@@ -167,11 +167,7 @@
     <disable_collisions link1="head_head_1_link" link2="left_arm_1_link" reason="Never" />
     <disable_collisions link1="head_head_1_link" link2="left_arm_2_link" reason="Never" />
     <disable_collisions link1="head_head_1_link" link2="left_arm_3_link" reason="Never" />
-    <disable_collisions link1="head_head_1_link" link2="left_arm_4_link" reason="Never" />
     <disable_collisions link1="head_head_1_link" link2="left_arm_base_link" reason="Never" />
-    <disable_collisions link1="head_head_1_link" link2="left_sdh_finger_22_link" reason="Never" />
-    <disable_collisions link1="head_head_1_link" link2="left_sdh_finger_23_link" reason="Never" />
-    <disable_collisions link1="head_head_1_link" link2="left_sdh_thumb_1_link" reason="Never" />
     <disable_collisions link1="head_head_1_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="head_head_1_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="head_head_1_link" link2="leg_2_link" reason="Never" />
@@ -182,6 +178,7 @@
     <disable_collisions link1="head_head_1_link" link2="right_arm_4_link" reason="Never" />
     <disable_collisions link1="head_head_1_link" link2="right_arm_base_link" reason="Never" />
     <disable_collisions link1="head_head_1_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="head_head_1_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="head_head_1_link" link2="torso_link" reason="Never" />
     <disable_collisions link1="head_head_1_link" link2="world_link" reason="Adjacent" />
     <disable_collisions link1="head_head_2_link" link2="head_head_3_link" reason="Adjacent" />
@@ -194,8 +191,6 @@
     <disable_collisions link1="head_head_2_link" link2="left_arm_3_link" reason="Never" />
     <disable_collisions link1="head_head_2_link" link2="left_arm_4_link" reason="Never" />
     <disable_collisions link1="head_head_2_link" link2="left_arm_base_link" reason="Never" />
-    <disable_collisions link1="head_head_2_link" link2="left_sdh_finger_13_link" reason="Never" />
-    <disable_collisions link1="head_head_2_link" link2="left_sdh_finger_22_link" reason="Never" />
     <disable_collisions link1="head_head_2_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="head_head_2_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="head_head_2_link" link2="leg_2_link" reason="Never" />
@@ -206,6 +201,7 @@
     <disable_collisions link1="head_head_2_link" link2="right_arm_4_link" reason="Never" />
     <disable_collisions link1="head_head_2_link" link2="right_arm_base_link" reason="Never" />
     <disable_collisions link1="head_head_2_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="head_head_2_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="head_head_2_link" link2="torso_link" reason="Never" />
     <disable_collisions link1="head_head_2_link" link2="world_link" reason="Never" />
     <disable_collisions link1="head_head_3_link" link2="head_head_4_link" reason="Adjacent" />
@@ -217,8 +213,6 @@
     <disable_collisions link1="head_head_3_link" link2="left_arm_3_link" reason="Never" />
     <disable_collisions link1="head_head_3_link" link2="left_arm_4_link" reason="Never" />
     <disable_collisions link1="head_head_3_link" link2="left_arm_base_link" reason="Never" />
-    <disable_collisions link1="head_head_3_link" link2="left_sdh_finger_11_link" reason="Never" />
-    <disable_collisions link1="head_head_3_link" link2="left_sdh_finger_12_link" reason="Never" />
     <disable_collisions link1="head_head_3_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="head_head_3_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="head_head_3_link" link2="leg_2_link" reason="Never" />
@@ -229,6 +223,7 @@
     <disable_collisions link1="head_head_3_link" link2="right_arm_4_link" reason="Never" />
     <disable_collisions link1="head_head_3_link" link2="right_arm_base_link" reason="Never" />
     <disable_collisions link1="head_head_3_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="head_head_3_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="head_head_3_link" link2="torso_link" reason="Never" />
     <disable_collisions link1="head_head_3_link" link2="world_link" reason="Never" />
     <disable_collisions link1="head_head_4_link" link2="head_head_5_link" reason="Adjacent" />
@@ -238,7 +233,6 @@
     <disable_collisions link1="head_head_4_link" link2="left_arm_2_link" reason="Never" />
     <disable_collisions link1="head_head_4_link" link2="left_arm_3_link" reason="Never" />
     <disable_collisions link1="head_head_4_link" link2="left_arm_base_link" reason="Never" />
-    <disable_collisions link1="head_head_4_link" link2="left_sdh_finger_11_link" reason="Never" />
     <disable_collisions link1="head_head_4_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="head_head_4_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="head_head_4_link" link2="leg_2_link" reason="Never" />
@@ -246,9 +240,9 @@
     <disable_collisions link1="head_head_4_link" link2="right_arm_1_link" reason="Never" />
     <disable_collisions link1="head_head_4_link" link2="right_arm_2_link" reason="Never" />
     <disable_collisions link1="head_head_4_link" link2="right_arm_3_link" reason="Never" />
-    <disable_collisions link1="head_head_4_link" link2="right_arm_4_link" reason="Never" />
     <disable_collisions link1="head_head_4_link" link2="right_arm_base_link" reason="Never" />
     <disable_collisions link1="head_head_4_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="head_head_4_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="head_head_4_link" link2="world_link" reason="Never" />
     <disable_collisions link1="head_head_5_link" link2="head_left_eye_link" reason="Adjacent" />
     <disable_collisions link1="head_head_5_link" link2="head_right_eye_link" reason="Adjacent" />
@@ -261,15 +255,13 @@
     <disable_collisions link1="head_head_5_link" link2="right_arm_1_link" reason="Never" />
     <disable_collisions link1="head_head_5_link" link2="right_arm_2_link" reason="Never" />
     <disable_collisions link1="head_head_5_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="head_head_5_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="head_head_5_link" link2="world_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="head_right_eye_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="left_arm_1_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="left_arm_2_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="left_arm_3_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="left_arm_base_link" reason="Never" />
-    <disable_collisions link1="head_left_eye_link" link2="left_sdh_finger_11_link" reason="Never" />
-    <disable_collisions link1="head_left_eye_link" link2="left_sdh_finger_12_link" reason="Never" />
-    <disable_collisions link1="head_left_eye_link" link2="left_sdh_finger_13_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="left_sdh_finger_23_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="leg_1_link" reason="Never" />
@@ -278,28 +270,23 @@
     <disable_collisions link1="head_left_eye_link" link2="right_arm_1_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="right_arm_2_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="right_arm_3_link" reason="Never" />
-    <disable_collisions link1="head_left_eye_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="right_arm_base_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="head_left_eye_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="head_left_eye_link" link2="world_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="left_arm_1_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="left_arm_2_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="left_arm_3_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="left_arm_base_link" reason="Never" />
-    <disable_collisions link1="head_right_eye_link" link2="left_sdh_connector_link" reason="Never" />
-    <disable_collisions link1="head_right_eye_link" link2="left_sdh_finger_11_link" reason="Never" />
-    <disable_collisions link1="head_right_eye_link" link2="left_sdh_finger_12_link" reason="Never" />
-    <disable_collisions link1="head_right_eye_link" link2="left_sdh_finger_13_link" reason="Never" />
-    <disable_collisions link1="head_right_eye_link" link2="left_sdh_finger_23_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="leg_2_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="leg_3_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="right_arm_1_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="right_arm_2_link" reason="Never" />
-    <disable_collisions link1="head_right_eye_link" link2="right_arm_3_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="right_arm_base_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="head_right_eye_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="head_right_eye_link" link2="world_link" reason="Never" />
     <disable_collisions link1="left_arm_1_link" link2="left_arm_2_link" reason="Adjacent" />
     <disable_collisions link1="left_arm_1_link" link2="left_arm_3_link" reason="Never" />
@@ -310,13 +297,8 @@
     <disable_collisions link1="left_arm_1_link" link2="left_arm_base_link" reason="Adjacent" />
     <disable_collisions link1="left_arm_1_link" link2="left_sdh_connector_link" reason="Never" />
     <disable_collisions link1="left_arm_1_link" link2="left_sdh_finger_11_link" reason="Never" />
-    <disable_collisions link1="left_arm_1_link" link2="left_sdh_finger_21_link" reason="Never" />
-    <disable_collisions link1="left_arm_1_link" link2="left_sdh_finger_22_link" reason="Never" />
-    <disable_collisions link1="left_arm_1_link" link2="left_sdh_finger_23_link" reason="Never" />
     <disable_collisions link1="left_arm_1_link" link2="left_sdh_palm_link" reason="Never" />
     <disable_collisions link1="left_arm_1_link" link2="left_sdh_thumb_1_link" reason="Never" />
-    <disable_collisions link1="left_arm_1_link" link2="left_sdh_thumb_2_link" reason="Never" />
-    <disable_collisions link1="left_arm_1_link" link2="left_sdh_thumb_3_link" reason="Never" />
     <disable_collisions link1="left_arm_1_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="left_arm_1_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="left_arm_1_link" link2="leg_2_link" reason="Never" />
@@ -327,6 +309,7 @@
     <disable_collisions link1="left_arm_1_link" link2="right_arm_4_link" reason="Never" />
     <disable_collisions link1="left_arm_1_link" link2="right_arm_base_link" reason="Never" />
     <disable_collisions link1="left_arm_1_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="left_arm_1_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="left_arm_1_link" link2="torso_link" reason="Default" />
     <disable_collisions link1="left_arm_1_link" link2="world_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="left_arm_3_link" reason="Adjacent" />
@@ -338,14 +321,11 @@
     <disable_collisions link1="left_arm_2_link" link2="left_sdh_connector_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="left_sdh_finger_11_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="left_sdh_finger_12_link" reason="Never" />
-    <disable_collisions link1="left_arm_2_link" link2="left_sdh_finger_13_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="left_sdh_finger_21_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="left_sdh_finger_22_link" reason="Never" />
-    <disable_collisions link1="left_arm_2_link" link2="left_sdh_finger_23_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="left_sdh_palm_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="left_sdh_thumb_1_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="left_sdh_thumb_2_link" reason="Never" />
-    <disable_collisions link1="left_arm_2_link" link2="left_sdh_thumb_3_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="leg_2_link" reason="Never" />
@@ -353,9 +333,9 @@
     <disable_collisions link1="left_arm_2_link" link2="right_arm_1_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="right_arm_2_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="right_arm_3_link" reason="Never" />
-    <disable_collisions link1="left_arm_2_link" link2="right_arm_4_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="right_arm_base_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="left_arm_2_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="left_arm_2_link" link2="world_link" reason="Never" />
     <disable_collisions link1="left_arm_3_link" link2="left_arm_4_link" reason="Adjacent" />
     <disable_collisions link1="left_arm_3_link" link2="left_arm_5_link" reason="Never" />
@@ -408,7 +388,6 @@
     <disable_collisions link1="left_arm_5_link" link2="left_sdh_finger_12_link" reason="Never" />
     <disable_collisions link1="left_arm_5_link" link2="left_sdh_finger_21_link" reason="Never" />
     <disable_collisions link1="left_arm_5_link" link2="left_sdh_finger_22_link" reason="Never" />
-    <disable_collisions link1="left_arm_5_link" link2="left_sdh_finger_23_link" reason="Never" />
     <disable_collisions link1="left_arm_5_link" link2="left_sdh_thumb_1_link" reason="Never" />
     <disable_collisions link1="left_arm_5_link" link2="left_sdh_thumb_2_link" reason="Never" />
     <disable_collisions link1="left_arm_5_link" link2="leg_0_link" reason="Never" />
@@ -452,9 +431,6 @@
     <disable_collisions link1="left_arm_7_link" link2="leg_3_link" reason="Never" />
     <disable_collisions link1="left_arm_7_link" link2="world_link" reason="Never" />
     <disable_collisions link1="left_arm_base_link" link2="left_sdh_connector_link" reason="Never" />
-    <disable_collisions link1="left_arm_base_link" link2="left_sdh_finger_11_link" reason="Never" />
-    <disable_collisions link1="left_arm_base_link" link2="left_sdh_finger_21_link" reason="Never" />
-    <disable_collisions link1="left_arm_base_link" link2="left_sdh_palm_link" reason="Never" />
     <disable_collisions link1="left_arm_base_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="left_arm_base_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="left_arm_base_link" link2="leg_2_link" reason="Never" />
@@ -465,6 +441,7 @@
     <disable_collisions link1="left_arm_base_link" link2="right_arm_4_link" reason="Never" />
     <disable_collisions link1="left_arm_base_link" link2="right_arm_base_link" reason="Never" />
     <disable_collisions link1="left_arm_base_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="left_arm_base_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="left_arm_base_link" link2="torso_link" reason="Default" />
     <disable_collisions link1="left_arm_base_link" link2="world_link" reason="Adjacent" />
     <disable_collisions link1="left_sdh_connector_link" link2="left_sdh_finger_11_link" reason="Never" />
@@ -491,8 +468,6 @@
     <disable_collisions link1="left_sdh_finger_11_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_11_link" link2="leg_2_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_11_link" link2="leg_3_link" reason="Never" />
-    <disable_collisions link1="left_sdh_finger_11_link" link2="push_link" reason="Never" />
-    <disable_collisions link1="left_sdh_finger_11_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_11_link" link2="world_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_12_link" link2="left_sdh_finger_13_link" reason="Adjacent" />
     <disable_collisions link1="left_sdh_finger_12_link" link2="left_sdh_palm_link" reason="Never" />
@@ -500,15 +475,13 @@
     <disable_collisions link1="left_sdh_finger_12_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_12_link" link2="leg_2_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_12_link" link2="leg_3_link" reason="Never" />
-    <disable_collisions link1="left_sdh_finger_12_link" link2="push_link" reason="Never" />
-    <disable_collisions link1="left_sdh_finger_12_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_12_link" link2="world_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_13_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_13_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_13_link" link2="leg_2_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_13_link" link2="leg_3_link" reason="Never" />
-    <disable_collisions link1="left_sdh_finger_13_link" link2="push_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_13_link" link2="right_arm_7_link" reason="Never" />
+    <disable_collisions link1="left_sdh_finger_13_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_13_link" link2="world_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_21_link" link2="left_sdh_finger_22_link" reason="Adjacent" />
     <disable_collisions link1="left_sdh_finger_21_link" link2="left_sdh_finger_23_link" reason="Never" />
@@ -519,8 +492,7 @@
     <disable_collisions link1="left_sdh_finger_21_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_21_link" link2="leg_2_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_21_link" link2="leg_3_link" reason="Never" />
-    <disable_collisions link1="left_sdh_finger_21_link" link2="push_link" reason="Never" />
-    <disable_collisions link1="left_sdh_finger_21_link" link2="right_arm_7_link" reason="Never" />
+    <disable_collisions link1="left_sdh_finger_21_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_21_link" link2="world_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_22_link" link2="left_sdh_finger_23_link" reason="Adjacent" />
     <disable_collisions link1="left_sdh_finger_22_link" link2="left_sdh_palm_link" reason="Never" />
@@ -528,13 +500,14 @@
     <disable_collisions link1="left_sdh_finger_22_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_22_link" link2="leg_2_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_22_link" link2="leg_3_link" reason="Never" />
-    <disable_collisions link1="left_sdh_finger_22_link" link2="right_arm_7_link" reason="Never" />
+    <disable_collisions link1="left_sdh_finger_22_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_22_link" link2="world_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_23_link" link2="leg_0_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_23_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_23_link" link2="leg_2_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_23_link" link2="leg_3_link" reason="Never" />
-    <disable_collisions link1="left_sdh_finger_23_link" link2="push_link" reason="Never" />
+    <disable_collisions link1="left_sdh_finger_23_link" link2="right_screwdriver" reason="Never" />
+    <disable_collisions link1="left_sdh_finger_23_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="left_sdh_finger_23_link" link2="world_link" reason="Never" />
     <disable_collisions link1="left_sdh_palm_link" link2="left_sdh_thumb_1_link" reason="Adjacent" />
     <disable_collisions link1="left_sdh_palm_link" link2="left_sdh_thumb_2_link" reason="Never" />
@@ -560,8 +533,6 @@
     <disable_collisions link1="left_sdh_thumb_3_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="left_sdh_thumb_3_link" link2="leg_2_link" reason="Never" />
     <disable_collisions link1="left_sdh_thumb_3_link" link2="leg_3_link" reason="Never" />
-    <disable_collisions link1="left_sdh_thumb_3_link" link2="right_arm_4_link" reason="Never" />
-    <disable_collisions link1="left_sdh_thumb_3_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="left_sdh_thumb_3_link" link2="world_link" reason="Never" />
     <disable_collisions link1="leg_0_link" link2="leg_1_link" reason="Never" />
     <disable_collisions link1="leg_0_link" link2="leg_2_link" reason="Never" />
@@ -574,13 +545,13 @@
     <disable_collisions link1="leg_0_link" link2="right_arm_6_link" reason="Never" />
     <disable_collisions link1="leg_0_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="leg_0_link" link2="right_arm_base_link" reason="Never" />
+    <disable_collisions link1="leg_0_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="leg_0_link" link2="table_plate_link" reason="Adjacent" />
     <disable_collisions link1="leg_0_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="leg_0_link" link2="torso_link" reason="Never" />
     <disable_collisions link1="leg_0_link" link2="world_link" reason="Never" />
     <disable_collisions link1="leg_1_link" link2="leg_2_link" reason="Never" />
     <disable_collisions link1="leg_1_link" link2="leg_3_link" reason="Never" />
-    <disable_collisions link1="leg_1_link" link2="push_link" reason="Never" />
     <disable_collisions link1="leg_1_link" link2="right_arm_1_link" reason="Never" />
     <disable_collisions link1="leg_1_link" link2="right_arm_2_link" reason="Never" />
     <disable_collisions link1="leg_1_link" link2="right_arm_3_link" reason="Never" />
@@ -589,12 +560,13 @@
     <disable_collisions link1="leg_1_link" link2="right_arm_6_link" reason="Never" />
     <disable_collisions link1="leg_1_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="leg_1_link" link2="right_arm_base_link" reason="Never" />
+    <disable_collisions link1="leg_1_link" link2="right_screwdriver" reason="Never" />
+    <disable_collisions link1="leg_1_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="leg_1_link" link2="table_plate_link" reason="Adjacent" />
     <disable_collisions link1="leg_1_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="leg_1_link" link2="torso_link" reason="Never" />
     <disable_collisions link1="leg_1_link" link2="world_link" reason="Never" />
     <disable_collisions link1="leg_2_link" link2="leg_3_link" reason="Never" />
-    <disable_collisions link1="leg_2_link" link2="push_link" reason="Never" />
     <disable_collisions link1="leg_2_link" link2="right_arm_1_link" reason="Never" />
     <disable_collisions link1="leg_2_link" link2="right_arm_2_link" reason="Never" />
     <disable_collisions link1="leg_2_link" link2="right_arm_3_link" reason="Never" />
@@ -603,11 +575,12 @@
     <disable_collisions link1="leg_2_link" link2="right_arm_6_link" reason="Never" />
     <disable_collisions link1="leg_2_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="leg_2_link" link2="right_arm_base_link" reason="Never" />
+    <disable_collisions link1="leg_2_link" link2="right_screwdriver" reason="Never" />
+    <disable_collisions link1="leg_2_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="leg_2_link" link2="table_plate_link" reason="Adjacent" />
     <disable_collisions link1="leg_2_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="leg_2_link" link2="torso_link" reason="Never" />
     <disable_collisions link1="leg_2_link" link2="world_link" reason="Never" />
-    <disable_collisions link1="leg_3_link" link2="push_link" reason="Never" />
     <disable_collisions link1="leg_3_link" link2="right_arm_1_link" reason="Never" />
     <disable_collisions link1="leg_3_link" link2="right_arm_2_link" reason="Never" />
     <disable_collisions link1="leg_3_link" link2="right_arm_3_link" reason="Never" />
@@ -616,16 +589,12 @@
     <disable_collisions link1="leg_3_link" link2="right_arm_6_link" reason="Never" />
     <disable_collisions link1="leg_3_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="leg_3_link" link2="right_arm_base_link" reason="Never" />
+    <disable_collisions link1="leg_3_link" link2="right_screwdriver" reason="Never" />
+    <disable_collisions link1="leg_3_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="leg_3_link" link2="table_plate_link" reason="Adjacent" />
     <disable_collisions link1="leg_3_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="leg_3_link" link2="torso_link" reason="Never" />
     <disable_collisions link1="leg_3_link" link2="world_link" reason="Never" />
-    <disable_collisions link1="push_link" link2="right_arm_2_link" reason="Never" />
-    <disable_collisions link1="push_link" link2="right_arm_3_link" reason="Never" />
-    <disable_collisions link1="push_link" link2="right_arm_4_link" reason="Never" />
-    <disable_collisions link1="push_link" link2="right_arm_6_link" reason="Never" />
-    <disable_collisions link1="push_link" link2="right_arm_7_link" reason="Adjacent" />
-    <disable_collisions link1="push_link" link2="table_surface_link" reason="User" />
     <disable_collisions link1="right_arm_1_link" link2="right_arm_2_link" reason="Adjacent" />
     <disable_collisions link1="right_arm_1_link" link2="right_arm_3_link" reason="Never" />
     <disable_collisions link1="right_arm_1_link" link2="right_arm_4_link" reason="Never" />
@@ -633,7 +602,9 @@
     <disable_collisions link1="right_arm_1_link" link2="right_arm_6_link" reason="Never" />
     <disable_collisions link1="right_arm_1_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="right_arm_1_link" link2="right_arm_base_link" reason="Adjacent" />
+    <disable_collisions link1="right_arm_1_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="right_arm_1_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="right_arm_1_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="right_arm_1_link" link2="torso_link" reason="Default" />
     <disable_collisions link1="right_arm_1_link" link2="world_link" reason="Never" />
     <disable_collisions link1="right_arm_2_link" link2="right_arm_3_link" reason="Adjacent" />
@@ -642,32 +613,45 @@
     <disable_collisions link1="right_arm_2_link" link2="right_arm_6_link" reason="Never" />
     <disable_collisions link1="right_arm_2_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="right_arm_2_link" link2="right_arm_base_link" reason="Never" />
+    <disable_collisions link1="right_arm_2_link" link2="right_screwdriver" reason="Never" />
+    <disable_collisions link1="right_arm_2_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="right_arm_2_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="right_arm_2_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="right_arm_2_link" link2="world_link" reason="Never" />
     <disable_collisions link1="right_arm_3_link" link2="right_arm_4_link" reason="Adjacent" />
     <disable_collisions link1="right_arm_3_link" link2="right_arm_5_link" reason="Never" />
     <disable_collisions link1="right_arm_3_link" link2="right_arm_6_link" reason="Never" />
     <disable_collisions link1="right_arm_3_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="right_arm_3_link" link2="right_arm_base_link" reason="Never" />
+    <disable_collisions link1="right_arm_3_link" link2="right_screwdriver" reason="Never" />
+    <disable_collisions link1="right_arm_3_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="right_arm_3_link" link2="table_plate_link" reason="Never" />
     <disable_collisions link1="right_arm_3_link" link2="world_link" reason="Never" />
     <disable_collisions link1="right_arm_4_link" link2="right_arm_5_link" reason="Adjacent" />
     <disable_collisions link1="right_arm_4_link" link2="right_arm_6_link" reason="Never" />
     <disable_collisions link1="right_arm_4_link" link2="right_arm_7_link" reason="Never" />
     <disable_collisions link1="right_arm_4_link" link2="right_arm_base_link" reason="Never" />
+    <disable_collisions link1="right_arm_4_link" link2="right_screwdriver" reason="Never" />
+    <disable_collisions link1="right_arm_4_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="right_arm_4_link" link2="world_link" reason="Never" />
     <disable_collisions link1="right_arm_5_link" link2="right_arm_6_link" reason="Adjacent" />
     <disable_collisions link1="right_arm_5_link" link2="right_arm_7_link" reason="Default" />
-    <disable_collisions link1="right_arm_5_link" link2="right_arm_base_link" reason="Never" />
     <disable_collisions link1="right_arm_6_link" link2="right_arm_7_link" reason="Adjacent" />
     <disable_collisions link1="right_arm_6_link" link2="right_arm_base_link" reason="Never" />
-    <disable_collisions link1="right_arm_7_link" link2="right_arm_base_link" reason="Never" />
+    <disable_collisions link1="right_arm_6_link" link2="right_screwdriver" reason="Never" />
+    <disable_collisions link1="right_arm_6_link" link2="right_screwdriver_connector_link" reason="Never" />
+    <disable_collisions link1="right_arm_7_link" link2="right_screwdriver" reason="Default" />
+    <disable_collisions link1="right_arm_7_link" link2="right_screwdriver_connector_link" reason="Adjacent" />
+    <disable_collisions link1="right_arm_base_link" link2="right_screwdriver_connector_link" reason="Never" />
     <disable_collisions link1="right_arm_base_link" link2="table_plate_link" reason="Never" />
+    <disable_collisions link1="right_arm_base_link" link2="table_surface_link" reason="Never" />
     <disable_collisions link1="right_arm_base_link" link2="torso_link" reason="Default" />
     <disable_collisions link1="right_arm_base_link" link2="world_link" reason="Adjacent" />
+    <disable_collisions link1="right_screwdriver" link2="right_screwdriver_connector_link" reason="Adjacent" />
     <disable_collisions link1="table_plate_link" link2="table_surface_link" reason="Adjacent" />
     <disable_collisions link1="table_plate_link" link2="torso_link" reason="Never" />
     <disable_collisions link1="table_plate_link" link2="world_link" reason="Adjacent" />
     <disable_collisions link1="table_surface_link" link2="torso_link" reason="Default" />
+    <disable_collisions link1="table_surface_link" link2="world_link" reason="Default" />
     <disable_collisions link1="torso_link" link2="world_link" reason="Adjacent" />
 </robot>
