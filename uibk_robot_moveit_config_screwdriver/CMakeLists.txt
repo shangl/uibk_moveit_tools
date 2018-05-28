@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(uibk_robot_moveit_config_push)
+project(uibk_robot_moveit_config_screwdriver)
 
 find_package(catkin REQUIRED)
 

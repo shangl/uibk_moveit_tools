@@ -20,7 +20,7 @@
   <group ns="$(arg ns)">
       
       # Initialize the planning_context and upload robot description first!
-      <include file="$(find uibk_robot_moveit_config_push)/launch/planning_context.launch">
+      <include file="$(find uibk_robot_moveit_config_screwdriver)/launch/planning_context.launch">
 	  <arg name="load_robot_description" value="true"/>
       </include>
   
@@ -32,7 +32,7 @@
 	    respawn="true">
 
       	  <!-- upload the adapter configuration to the parameter server -->
-      	  <rosparam command="load" file="$(find uibk_robot_moveit_config_push)/config/adapter_config.yaml" />
+      	  <rosparam command="load" file="$(find uibk_robot_moveit_config_screwdriver)/config/adapter_config.yaml" />
       </node>
       
       # Load controller configurations to the parameter server
@@ -47,12 +47,12 @@
 	    output="screen"
 	    args="$(arg controllers)" />
 
-      <include file="$(find uibk_robot_moveit_config_push)/launch/move_group.launch">
+      <include file="$(find uibk_robot_moveit_config_screwdriver)/launch/move_group.launch">
 	<arg name="publish_monitored_planning_scene" value="true" />
       </include>
       
       # The visualization component of MoveIt!
-      <include if="$(arg rviz)" file="$(find uibk_robot_moveit_config_push)/launch/moveit_rviz.launch">
+      <include if="$(arg rviz)" file="$(find uibk_robot_moveit_config_screwdriver)/launch/moveit_rviz.launch">
 	<arg name="config" value="true"/>
       </include>
       

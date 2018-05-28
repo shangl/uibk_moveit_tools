@@ -8,5 +8,5 @@
   <arg name="use_controller_manager" default="true" />
   <param name="use_controller_manager" value="$(arg use_controller_manager)" />
   
-  <rosparam file="$(find uibk_robot_moveit_config_push)/config/controllers.yaml"/>
+  <rosparam file="$(find uibk_robot_moveit_config_screwdriver)/config/controllers.yaml"/>
 </launch>

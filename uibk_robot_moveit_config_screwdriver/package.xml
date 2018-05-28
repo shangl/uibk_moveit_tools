@@ -1,6 +1,6 @@
 <package>
 
-  <name>uibk_robot_moveit_config_push</name>
+  <name>uibk_robot_moveit_config_screwdriver</name>
   <version>0.3.0</version>
   <description>
      An automatically generated package with all the configuration and launch files for using the iis_robot with the MoveIt! Motion Planning Framework
