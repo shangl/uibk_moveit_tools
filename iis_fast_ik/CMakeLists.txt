@@ -22,13 +22,14 @@ find_package(catkin REQUIRED COMPONENTS
   message_runtime
   geometry_msgs
   moveit_core
+  eigen_conversions
   moveit_ros_planning_interface
 )
 
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
-  CATKIN_DEPENDS roscpp moveit_core moveit_ros_planning_interface rospy std_msgs geometry_msgs
+  CATKIN_DEPENDS roscpp moveit_core moveit_ros_planning_interface rospy std_msgs geometry_msgs eigen_conversions
 )
 
 include_directories(
